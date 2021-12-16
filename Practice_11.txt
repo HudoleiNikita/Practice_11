@@ -1,0 +1,79 @@
+1.
+from random import randint
+def bubble(n):
+  lst = []
+  temp=0
+  for i in range(n):
+    lst.append(randint(1, 100))
+  print(lst)
+ 
+  for i in range(0, n-1):
+      for j in range(0, n-i-1):
+          if lst[j] > lst[j+1]:
+              temp=lst[j+1]
+              lst[j+1]=lst[j]
+              lst[j]=temp
+  print("отсортированный: ",lst)
+  print('____')
+  
+bubble(10)
+bubble(100)
+2.
+Сложность алгоритма О(n^2). Имеем вложенный цикл. В первом (n-1) и во втором (n-i-1). Перемножая их получаем величину зависищую от n^2.
+3.
+from random import randint
+
+def countSort(n):
+  
+  lst = []
+  for i in range(n):
+    lst.append(randint(1, 100))
+  print(lst)
+    
+  numbers=[]
+  for i in range(100):
+    numbers+=[0]
+  for i in lst:
+    numbers[i]+=1
+  
+  j=0
+  for i in range(100):
+    if numbers[i]>0:
+      for k in range(numbers[i]):
+        lst[j]=i
+        j=j+1
+  print("Отсортированный: ",lst)
+
+countSort(10)
+4.
+Сложность алгоритма равна О(n). Подсчитываем сколько раз в массиве встречается каждое значение и заполняем массив подсчитанными элементами в соответствующих количествах.
+5.
+from random import randint
+lst1 = []
+for i in range(10):
+  lst1.append(randint(1, 100))
+lst1.sort()
+print("first: ",lst1)
+
+lst2 = []
+for i in range(10):
+  lst2.append(randint(1, 100))
+lst2.sort()
+print("second: ",lst2)
+
+def merge(list1, list2):
+  i = 0
+  j = 0
+  merged = []
+  while i < len(list1) and j < len(list2):
+    if list1[i] < list2[j]:
+      merged.append(list1[i])
+      i=i+1
+    else:
+      merged.append(list2[j])
+      j=j+1
+  merged += list1[i:]
+  merged += list2[j:] 
+  print(merged)
+  
+merge(lst1,lst2)
